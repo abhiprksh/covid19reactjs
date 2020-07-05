@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux';
+import allReducer from './reducers';
+import { Provider } from 'react-redux';
+
+//STORE--> GLOBALIZED STATE
+
+let store = createStore(allReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+//Display in console
+// store.subscribe(() => console.log(store.getState()))
+
+//DISPACTH
+// store.dispatch(increment())
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
